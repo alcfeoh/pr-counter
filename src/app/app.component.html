@@ -1,9 +1,9 @@
 <h1>Total for today: {{totalAmount | currency}}</h1>
-<h2>Reviews: {{totalReviews}}</h2>
-<button *ngFor="let val of values" (click)="totalAmount = totalAmount + val; totalReviews = totalReviews + 1">
+<h2>Reviews: {{allReviews.length}} - {{allReviews | json}}</h2>
+<button *ngFor="let val of values" (click)="addReview(val)">
   Add {{val | currency}}
 </button>
 <br>
-<button (click)="totalAmount = 0; totalReviews = 0">
+<button (click)="totalAmount = 0">
   Reset all
 </button>

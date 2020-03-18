@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
   totalAmount = 0;
-  totalReviews = 0;
-  values = [8.25, 8.25 * 2, 8.25 * 3, 8.25 * 4, 8.25 * 5, 8.25 * 6, 8.25 *7, 8.25 *8, 8.25 *9, 8.25 *10];
+  allReviews = localStorage.getItem('reviews') || [];
+  values = Array(15).fill().map((_, i) => (i+1) *8.25);
+
+  addReview(amount: number) {
+    this.totalAmount += amount; 
+    this.allReviews.push(amount);
+    localStorage.setItem('reviews', JSON.stringify(this.allReviews));
+  }
+
 }
