@@ -6,14 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  totalAmount = 0;
-  allReviews = localStorage.getItem('reviews') || [];
+  allReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  totalAmount = this.allReviews.reduce((t,i) => t+i, 0);
   values = Array(15).fill().map((_, i) => (i+1) *8.25);
 
   addReview(amount: number) {
-    this.totalAmount += amount; 
     this.allReviews.push(amount);
+    this.totalAmount += amount;
     localStorage.setItem('reviews', JSON.stringify(this.allReviews));
+  }
+
+  clear() {
+     localStorage.removeItem('reviews');
+     this.allReviews = [];
+     this.totalAmount = 0;
   }
 
 }
